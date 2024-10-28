@@ -1,10 +1,11 @@
 module.exports = {
     params: {
         designator: 'S',
-        side: 'F',
+        side: 'B',
         from: undefined,
         to: undefined,
         include_switch_hole: {type: 'boolean', value: true},
+        include_traces: {type: 'boolean', value: false},
     },
     body: p => {
         const standard = `
@@ -70,10 +71,32 @@ module.exports = {
                              : ''}
                             `
 
+        const traces =  `${p.include_traces ? 
+                        `
+                        (segment (start ${p.eaxy(-2.45, -5.9)}) (end ${p.eaxy(-2.6, -5.75)}) (width 0.25) (layer "F.Cu"))
+                        (segment (start ${p.eaxy(-3.81, -4.54)}) (end ${p.eaxy(-3.81, -2.54)}) (width 0.25) (layer "F.Cu"))
+                        (segment (start ${p.eaxy(0, -5.9)}) (end ${p.eaxy(-2.45, -5.9)}) (width 0.25) (layer "F.Cu"))
+                        (segment (start ${p.eaxy(-2.6, -5.75)}) (end ${p.eaxy(-3.81, -4.54)}) (width 0.25) (layer "F.Cu"))
+                        (segment (start ${p.eaxy(-3.81, -2.54)}) (end ${p.eaxy(-2.46, -2.54)}) (width 0.25) (layer "B.Cu"))
+                        (segment (start ${p.eaxy(-2.46, -2.54)}) (end ${p.eaxy(-1.6, -3.4)}) (width 0.25) (layer "B.Cu"))
+                        (segment (start ${p.eaxy(7.56, -0.44)}) (end ${p.eaxy(7.56, 2.54)}) (width 0.25) (layer "B.Cu"))
+                        (segment (start ${p.eaxy(-1.6, -3.4)}) (end ${p.eaxy(1.8, -3.4)}) (width 0.25) (layer "B.Cu"))
+                        (segment (start ${p.eaxy(3.6, -1.6)}) (end ${p.eaxy(6.4, -1.6)}) (width 0.25) (layer "B.Cu"))
+                        (segment (start ${p.eaxy(1.8, -3.4)}) (end ${p.eaxy(3.6, -1.6)}) (width 0.25) (layer "B.Cu"))
+                        (segment (start ${p.eaxy(7.56, 2.54)}) (end ${p.eaxy(7.56, 4.065001)}) (width 0.25) (layer "B.Cu"))
+                        (segment (start ${p.eaxy(6.4, -1.6)}) (end ${p.eaxy(7.56, -0.44)}) (width 0.25) (layer "B.Cu"))
+                        (segment (start ${p.eaxy(7.56, 4.065001)}) (end ${p.eaxy(5.875, 5.750001)}) (width 0.25) (layer "B.Cu"))
+                        `
+                        : ''}
+                        `
+
         return `
         ${standard}
         ${switch_hole}
         )
-        `
+
+        ${''/* Traces */}
+        ${traces}
+        `;
     }
 }
