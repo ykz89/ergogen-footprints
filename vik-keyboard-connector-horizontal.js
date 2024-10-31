@@ -22,7 +22,7 @@ module.exports = {
             (layer "F.Cu")
             (attr smd)
             ${'' /* footprint reference */}
-            (fp_text reference "${p.ref}" (at 4.25 -3.5 ${p.rot}) (layer ${p.side}.SilkS) ${p.ref_hide}
+            (fp_text Reference "${p.ref}" (at 4.25 -3.5 ${p.rot}) (layer ${p.side}.SilkS) ${p.ref_hide}
                 (effects (font (size 1 1) (thickness 0.15)))
             )
             (fp_text value "vik-keyboard-connector-horizontal" (at 0.05 5.09 ${p.rot}) (layer "F.Fab")

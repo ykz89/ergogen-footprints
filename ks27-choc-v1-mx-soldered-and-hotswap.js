@@ -13,7 +13,7 @@ module.exports = {
             ${p.at /* parametric position */}
             (layer "${p.side}.Cu")
             ${'' /* footprint reference */}
-            (property reference "${p.ref}" 
+            (property Reference "${p.ref}" 
                 (at 0.1 -8.5 ${p.r}) 
                 (layer ${p.side}.SilkS) 
                 ${p.ref_hide}
